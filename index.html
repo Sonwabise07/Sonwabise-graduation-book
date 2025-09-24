@@ -1,150 +1,1321 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Congratulations Lukho!</title>
-    <link rel="stylesheet" href="css/styles.css"> 
-</head>
-<body>
-    <header>
-        <div class="container header-container">
-            <a href="#" class="logo">Congratulations<span>!</span></a>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sonwabise Mtirara's Graduation Journey</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lato:wght@300;400;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg-color: #f5f3f0;
+        --page-color: #fefefe;
+        --text-color: #2c2c2c;
+        --primary-color: #6c757d;
+        --accent-color: #52796f;
+        --gold-color: #d4af37;
+        --header-font: "Playfair Display", serif;
+        --body-font: "Lato", sans-serif;
+      }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        font-family: var(--body-font);
+        background: linear-gradient(135deg, #e6e2dd 0%, #d9d3cc 100%);
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+        color: var(--text-color);
+        overflow: hidden;
+      }
+
+      .book-container {
+        width: 1100px;
+        height: 700px;
+        position: relative;
+        perspective: 2000px;
+      }
+
+      .book {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        transform-style: preserve-3d;
+        transition: transform 1s ease-in-out;
+        transform: rotateY(-15deg);
+      }
+
+      .book.opened {
+        transform: rotateY(0deg);
+      }
+
+      .book-cover {
+        position: absolute;
+        width: 50%;
+        height: 100%;
+        background: linear-gradient(135deg, #6d5b44, #5d4c3a);
+        border-radius: 0 15px 15px 0;
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+        transform-origin: left center;
+        transform-style: preserve-3d;
+        transition: transform 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+        z-index: 1000;
+        backface-visibility: hidden;
+        padding: 20px;
+      }
+
+      .book-cover.opened {
+        transform: rotateY(-180deg);
+      }
+
+      .page-spread {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        opacity: 0;
+        visibility: hidden;
+        transform-style: preserve-3d;
+      }
+
+      .page-spread.active {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      .page-spread.flipping {
+        z-index: 10;
+      }
+
+      .page-spread.flipping .left-page {
+        transform: rotateY(-180deg);
+        transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .page-spread.flipping .right-page {
+        transform: rotateY(180deg);
+        transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .left-page,
+      .right-page {
+        width: 50%;
+        height: 100%;
+        background-color: var(--page-color);
+        padding: 40px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        overflow-y: auto;
+        position: relative;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        transform-style: preserve-3d;
+        backface-visibility: hidden;
+        transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .left-page {
+        border-right: 1px solid #ddd;
+        border-radius: 10px 0 0 10px;
+        box-shadow: inset -5px 0 10px rgba(0, 0, 0, 0.1);
+        transform-origin: right center;
+      }
+
+      .right-page {
+        border-radius: 0 10px 10px 0;
+        box-shadow: inset 5px 0 10px rgba(0, 0, 0, 0.1);
+        transform-origin: left center;
+      }
+
+      .cover-content {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        background: linear-gradient(135deg, #f1eae2, #e6ded7);
+        position: relative;
+        border: 2px solid var(--gold-color);
+        box-shadow: inset 0 0 25px rgba(0, 0, 0, 0.3);
+        border-radius: 0 12px 12px 0;
+      }
+
+      .cover-logo {
+        width: 150px;
+        height: auto;
+        margin-bottom: 20px;
+      }
+
+      .cover-main-title {
+        font-family: var(--header-font);
+        font-size: 3.5em;
+        color: #2c2c2c;
+        margin-bottom: 10px;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      .cover-grad-name {
+        font-family: var(--header-font);
+        font-size: 2.2em;
+        color: var(--accent-color);
+        margin-bottom: 20px;
+      }
+
+      .cover-details {
+        font-size: 1.1em;
+        color: var(--primary-color);
+        margin-top: 10px;
+      }
+
+      .cum-laude-badge {
+        background-color: var(--gold-color);
+        color: white;
+        padding: 8px 15px;
+        border-radius: 20px;
+        font-weight: bold;
+        margin-top: 15px;
+        font-size: 1.2em;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      }
+
+      .page-content {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+      }
+
+      .media-container {
+        width: 100%;
+        flex-grow: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+      }
+
+      .memory-image,
+      .memory-video {
+        max-width: 90%;
+        max-height: 80%;
+        object-fit: contain;
+        border-radius: 8px;
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease;
+      }
+
+      .memory-image:hover,
+      .memory-video:hover {
+        transform: scale(1.02);
+      }
+
+      .caption-container {
+        width: 90%;
+        padding: 15px;
+        font-size: 1.1em;
+        font-style: italic;
+        color: var(--primary-color);
+        border-top: 2px solid var(--accent-color);
+        text-align: center;
+        line-height: 1.6;
+        background-color: rgba(248, 249, 250, 0.7);
+        border-radius: 5px;
+      }
+
+      .article-content,
+      .toc-content {
+        text-align: left;
+        width: 100%;
+        height: 100%;
+        overflow-y: auto;
+        padding: 20px;
+        line-height: 1.8;
+        font-size: 0.95em;
+      }
+
+      .article-content h3 {
+        font-family: var(--header-font);
+        color: var(--accent-color);
+        margin-bottom: 15px;
+        font-size: 1.8em;
+        border-bottom: 2px solid var(--accent-color);
+        padding-bottom: 10px;
+      }
+
+      .article-content p {
+        margin-bottom: 15px;
+        text-align: justify;
+      }
+
+      .article-image {
+        float: right;
+        margin: 0 0 15px 15px;
+        width: 200px;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      .toc-list {
+        list-style-position: inside;
+        padding-left: 10px;
+        margin-top: 30px;
+      }
+
+      .toc-list li {
+        margin-bottom: 15px;
+        font-size: 1.2em;
+        padding: 10px;
+        border-left: 3px solid var(--accent-color);
+        transition: all 0.3s ease;
+        cursor: pointer;
+      }
+
+      .toc-list li:hover {
+        background-color: rgba(82, 121, 111, 0.1);
+        transform: translateX(5px);
+      }
+
+      .open-book-btn {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        padding: 20px 40px;
+        background: var(--accent-color);
+        color: white;
+        border: none;
+        border-radius: 30px;
+        font-size: 18px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        z-index: 200;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+      }
+
+      .open-book-btn:hover {
+        background: #3f5f58;
+        transform: translate(-50%, -50%) scale(1.05);
+      }
+
+      .open-book-btn.hidden {
+        opacity: 0;
+        visibility: hidden;
+      }
+
+      .controls {
+        position: fixed;
+        bottom: 30px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        gap: 20px;
+        z-index: 1000;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+      }
+
+      .controls.visible {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      .nav-btn {
+        padding: 15px 35px;
+        border: 2px solid var(--accent-color);
+        border-radius: 30px;
+        font-size: 16px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        background-color: var(--accent-color);
+        color: white;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      }
+
+      .nav-btn:hover {
+        background-color: #3f5f58;
+        border-color: #3f5f58;
+        transform: translateY(-3px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+      }
+
+      .nav-btn:disabled {
+        background-color: var(--primary-color);
+        border-color: var(--primary-color);
+        opacity: 0.6;
+        cursor: not-allowed;
+        transform: none;
+      }
+
+      .page-counter {
+        position: fixed;
+        bottom: 100px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: rgba(255, 255, 255, 0.9);
+        padding: 10px 20px;
+        border-radius: 20px;
+        font-weight: bold;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        backdrop-filter: blur(5px);
+        border: 1px solid rgba(0, 0, 0, 0.1);
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+      }
+
+      .page-counter.visible {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      .book-shadow {
+        position: absolute;
+        bottom: -20px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 90%;
+        height: 20px;
+        background: rgba(0, 0, 0, 0.2);
+        border-radius: 50%;
+        filter: blur(10px);
+        z-index: -1;
+      }
+
+      /* Music Player Styles */
+      .music-player {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        border-radius: 20px;
+        padding: 10px 15px;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        z-index: 2000;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        min-width: 250px;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+        font-size: 12px;
+      }
+
+      .music-player.visible {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      .music-controls {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+
+      .music-btn {
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        border: none;
+        background: var(--accent-color);
+        color: white;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 10px;
+        transition: all 0.2s ease;
+      }
+
+      .music-btn:hover {
+        background: #3f5f58;
+        transform: scale(1.05);
+      }
+
+      .music-btn:disabled {
+        background: #ccc;
+        cursor: not-allowed;
+        transform: none;
+      }
+
+      .song-info {
+        flex: 1;
+        text-align: center;
+        margin: 0 8px;
+      }
+
+      .song-title {
+        font-weight: bold;
+        color: var(--accent-color);
+        font-size: 11px;
+        margin-bottom: 2px;
+      }
+
+      .song-progress {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        font-size: 9px;
+        color: #666;
+      }
+
+      .progress-bar {
+        flex: 1;
+        height: 3px;
+        background: #ddd;
+        border-radius: 2px;
+        overflow: hidden;
+      }
+
+      .progress-fill {
+        height: 100%;
+        background: var(--accent-color);
+        border-radius: 2px;
+        width: 0%;
+        transition: width 0.1s ease;
+      }
+
+      .volume-control {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+      }
+
+      .volume-slider {
+        width: 40px;
+        height: 3px;
+        background: #ddd;
+        border-radius: 2px;
+        outline: none;
+        -webkit-appearance: none;
+      }
+
+      .volume-slider::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        width: 12px;
+        height: 12px;
+        background: var(--accent-color);
+        border-radius: 50%;
+        cursor: pointer;
+      }
+
+      /* Fix for hiding first spread when book is closed */
+      .book:not(.opened) .page-spread:first-of-type {
+        opacity: 0 !important;
+        visibility: hidden !important;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Music Player -->
+    <div class="music-player" id="musicPlayer">
+      <div class="music-controls">
+        <button class="music-btn" id="prevSongBtn" onclick="previousSong()">⏮</button>
+        <button class="music-btn" id="playPauseBtn" onclick="togglePlayPause()">▶</button>
+        <button class="music-btn" id="nextSongBtn" onclick="nextSong()">⏭</button>
+      </div>
+      <div class="song-info">
+        <div class="song-title" id="songTitle">No Song Selected</div>
+        <div class="song-progress">
+          <span id="currentTime">0:00</span>
+          <div class="progress-bar" onclick="seekSong(event)">
+            <div class="progress-fill" id="progressFill"></div>
+          </div>
+          <span id="duration">0:00</span>
         </div>
-    </header>
+      </div>
+      <div class="volume-control">
+        <span style="font-size: 10px;">🔊</span>
+        <input type="range" class="volume-slider" id="volumeSlider" min="0" max="100" value="70" onchange="changeVolume()">
+      </div>
+    </div>
 
-    <section id="hero">
-        <div class="container">
-            <div class="hero-content">
-                <img src="images/UKZN_Logo.png" alt="UKZN Logo" class="uni-logo">
-                <h1>Congratulations, <span>Lukho Mtirara</span>!</h1>
-                <h2>Bachelor of Social Science Graduate</h2>
-                <p>We are all so incredibly proud of your hard work, dedication, and amazing achievement. Wishing you a future filled with success and happiness!</p>
-            </div>
-            <div class="hero-img">
-                <img src="images/c.jpg" alt="Lukho Mtirara Graduate">
-            </div>
+    <div class="book-container">
+      <div class="book" id="book">
+        <div class="book-cover" id="bookCover">
+          <div class="cover-content">
+            <img
+              src="./images/DUTLOGO.jpeg"
+              alt="DUT Logo"
+              class="cover-logo"
+            />
+            <h1 class="cover-main-title">Graduation Journey</h1>
+            <h2 class="cover-grad-name">Sonwabise Mtirara</h2>
+            <div class="cum-laude-badge">Cum Laude</div>
+            <p class="cover-details">Class of 2025</p>
+            <p class="cover-details">Diploma in ICT Business Analysis</p>
+          </div>
         </div>
-    </section>
+      </div>
+      <div class="book-shadow"></div>
+    </div>
 
-    <section id="videos">
-        <div class="container">
-            <div class="section-title">
-                <h2>Graduation Moments</h2>
-            </div>
-            <div class="video-container">
+    <button class="open-book-btn" id="openBookBtn" onclick="openBook()">
+      Open Book
+    </button>
 
-                <div class="teleprompter">
-                    <div class="teleprompter-content scroll-up">
-                        <p>Maduna</p>
-                        <p>Nokhala</p>
-                        <p>Gubevu</p>
-                        <p>Jiyane</p>
-                        <p>Makhwintsi</p>
-                        <p>Bhere</p>
-                        <p>Maduna</p>
-                        <p>Nokhala</p>
-                        <p>Gubevu</p>
-                        <p>Jiyane</p>
-                        <p>Makhwintsi</p>
-                        <p>Bhere</p>
-                    </div>
-                </div>
+    <div class="page-counter" id="pageCounter"></div>
 
-                <div class="video-item">
-                    <video autoplay loop muted playsinline>
-                        <source src="images/vid1.mp4" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
-                </div>
-                <div class="video-item">
-                    <video autoplay loop muted playsinline>
-                        <source src="images/vid2.mp4" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
-                </div>
-                
-                <div class="teleprompter">
-                    <div class="teleprompter-content scroll-down">
-                        <p>Felicidades</p>
-                        <p>Félicitations</p>
-                        <p>Gratulacje</p>
-                        <p>おめでとう</p>
-                        <p>Parabéns</p>
-                        <p>تهانينا</p>
-                        <p>Hongera</p>
-                        <p>Felicidades</p>
-                        <p>Félicitations</p>
-                        <p>Gratulacje</p>
-                        <p>おめでとう</p>
-                        <p>Parabéns</p>
-                        <p>تهانينا</p>
-                        <p>Hongera</p>
-                    </div>
-                </div>
+    <div class="controls" id="controls">
+      <button class="nav-btn prev-btn" id="prevBtn" onclick="goPrevPage()">
+        ◀ Previous
+      </button>
+      <button class="nav-btn next-btn" id="nextBtn" onclick="goNextPage()">
+        Next ▶
+      </button>
+    </div>
 
-            </div>
-        </div>
-    </section>
+    <!-- Hidden Audio Elements -->
+    <audio id="audioPlayer" preload="metadata"></audio>
 
-    <section id="photo-gallery">
-        <div class="container">
-            <div class="section-title">
-                <h2>Memories & Moments</h2>
-            </div>
-            <div class="gallery-container">
-                <div class="scroller">
-                    <div class="scroller-inner">
-                        <div class="gallery-item"><img src="images/a.jpg" alt="Lukho Memory"></div>
-                        <div class="gallery-item"><img src="images/b.jpg" alt="Lukho Memory"></div>
-                        <div class="gallery-item"><img src="images/c.jpg" alt="Lukho Memory"></div>
-                        <div class="gallery-item"><img src="images/d.jpg" alt="Lukho Memory"></div>
-                        <div class="gallery-item"><img src="images/e.jpg" alt="Lukho Memory"></div>
-                        <div class="gallery-item"><img src="images/f.jpg" alt="Lukho Memory"></div>
-                        <div class="gallery-item"><img src="images/g.jpg" alt="Lukho Memory"></div>
-                        <div class="gallery-item"><img src="images/h.jpg" alt="Lukho Memory"></div>
-                        <div class="gallery-item"><img src="images/i.jpg" alt="Lukho Memory"></div>
-                        <div class="gallery-item"><img src="images/j.jpg" alt="Lukho Memory"></div>
-                        <div class="gallery-item"><img src="images/k.jpg" alt="Lukho Memory"></div>
-                        <div class="gallery-item"><img src="images/l.jpg" alt="Lukho Memory"></div>
-                        <div class="gallery-item"><img src="images/m.jpg" alt="Lukho Memory"></div>
-                        <div class="gallery-item"><img src="images/o.jpg" alt="Lukho Memory"></div>
-                        <div class="gallery-item"><img src="images/p.jpg" alt="Lukho Memory"></div>
-                        <div class="gallery-item"><img src="images/n.jpg" alt="Lukho Memory"></div>
-                        <div class="gallery-item"><img src="images/q.jpg" alt="Lukho Memory"></div>
-                        <div class="gallery-item"><img src="images/r.jpg" alt="Lukho Memory"></div>
-                        <div class="gallery-item"><img src="images/s.jpg" alt="Lukho Memory"></div>
+    <script>
+      // Music Player Variables
+      const songs = [
+        { title: "Congratulations", src: "./images/congragulations.mp3" },
+        { title: "Thank You", src: "./images/thank you.mp3" },
+        { title: "Emtee", src: "./images/emtee.mp3" }
+      ];
 
-                        <div class="gallery-item"><img src="images/a.jpg" alt="Lukho Memory"></div>
-                        <div class="gallery-item"><img src="images/b.jpg" alt="Lukho Memory"></div>
-                        <div class="gallery-item"><img src="images/c.jpg" alt="Lukho Memory"></div>
-                        <div class="gallery-item"><img src="images/d.jpg" alt="Lukho Memory"></div>
-                        <div class="gallery-item"><img src="images/e.jpg" alt="Lukho Memory"></div>
-                        <div class="gallery-item"><img src="images/f.jpg" alt="Lukho Memory"></div>
-                        <div class="gallery-item"><img src="images/g.jpg" alt="Lukho Memory"></div>
-                        <div class="gallery-item"><img src="images/h.jpg" alt="Lukho Memory"></div>
-                        <div class="gallery-item"><img src="images/i.jpg" alt="Lukho Memory"></div>
-                        <div class="gallery-item"><img src="images/j.jpg" alt="Lukho Memory"></div>
-                        <div class="gallery-item"><img src="images/k.jpg" alt="Lukho Memory"></div>
-                        <div class="gallery-item"><img src="images/l.jpg" alt="Lukho Memory"></div>
-                        <div class="gallery-item"><img src="images/m.jpg" alt="Lukho Memory"></div>
-                        <div class="gallery-item"><img src="images/o.jpg" alt="Lukho Memory"></div>
-                        <div class="gallery-item"><img src="images/p.jpg" alt="Lukho Memory"></div>
-                        <div class="gallery-item"><img src="images/n.jpg" alt="Lukho Memory"></div>
-                        <div class="gallery-item"><img src="images/q.jpg" alt="Lukho Memory"></div>
-                        <div class="gallery-item"><img src="images/r.jpg" alt="Lukho Memory"></div>
-                        <div class="gallery-item"><img src="images/s.jpg" alt="Lukho Memory"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+      let currentSongIndex = 0;
+      let isPlaying = false;
+      const audioPlayer = document.getElementById('audioPlayer');
+      const musicPlayer = document.getElementById('musicPlayer');
+      const playPauseBtn = document.getElementById('playPauseBtn');
+      const songTitle = document.getElementById('songTitle');
+      const currentTimeSpan = document.getElementById('currentTime');
+      const durationSpan = document.getElementById('duration');
+      const progressFill = document.getElementById('progressFill');
+      const volumeSlider = document.getElementById('volumeSlider');
 
-    <footer>
-        <div class="container">
-            <p>&copy; <script>document.write(new Date().getFullYear())</script>. Made with love for Lukho By SONWABISE MTIRARA.</p>
-        </div>
-    </footer>
+      // Initialize music player
+      function initMusicPlayer() {
+        loadSong(0);
+        audioPlayer.volume = 0.7;
+        
+        // Audio event listeners
+        audioPlayer.addEventListener('loadedmetadata', updateDuration);
+        audioPlayer.addEventListener('timeupdate', updateProgress);
+        audioPlayer.addEventListener('ended', nextSong);
+        audioPlayer.addEventListener('error', handleAudioError);
+      }
 
-</body>
+      function loadSong(index) {
+        currentSongIndex = index;
+        const song = songs[index];
+        audioPlayer.src = song.src;
+        songTitle.textContent = song.title;
+        updateButtons();
+      }
+
+      function togglePlayPause() {
+        if (isPlaying) {
+          audioPlayer.pause();
+          playPauseBtn.textContent = '▶';
+          isPlaying = false;
+        } else {
+          audioPlayer.play().then(() => {
+            playPauseBtn.textContent = '⏸';
+            isPlaying = true;
+          }).catch(handleAudioError);
+        }
+      }
+
+      function nextSong() {
+        const nextIndex = (currentSongIndex + 1) % songs.length;
+        loadSong(nextIndex);
+        if (isPlaying) {
+          audioPlayer.play().catch(handleAudioError);
+        }
+      }
+
+      function previousSong() {
+        const prevIndex = (currentSongIndex - 1 + songs.length) % songs.length;
+        loadSong(prevIndex);
+        if (isPlaying) {
+          audioPlayer.play().catch(handleAudioError);
+        }
+      }
+
+      function updateButtons() {
+        document.getElementById('prevSongBtn').disabled = false;
+        document.getElementById('nextSongBtn').disabled = false;
+      }
+
+      function updateDuration() {
+        const duration = audioPlayer.duration;
+        if (duration) {
+          durationSpan.textContent = formatTime(duration);
+        }
+      }
+
+      function updateProgress() {
+        const currentTime = audioPlayer.currentTime;
+        const duration = audioPlayer.duration;
+        
+        if (duration) {
+          const progress = (currentTime / duration) * 100;
+          progressFill.style.width = progress + '%';
+          currentTimeSpan.textContent = formatTime(currentTime);
+        }
+      }
+
+      function seekSong(event) {
+        const progressBar = event.currentTarget;
+        const clickX = event.offsetX;
+        const width = progressBar.offsetWidth;
+        const duration = audioPlayer.duration;
+        
+        if (duration) {
+          const newTime = (clickX / width) * duration;
+          audioPlayer.currentTime = newTime;
+        }
+      }
+
+      function changeVolume() {
+        const volume = volumeSlider.value / 100;
+        audioPlayer.volume = volume;
+      }
+
+      function formatTime(seconds) {
+        const mins = Math.floor(seconds / 60);
+        const secs = Math.floor(seconds % 60);
+        return `${mins}:${secs.toString().padStart(2, '0')}`;
+      }
+
+      function handleAudioError() {
+        console.log('Audio playback error - file may not exist');
+        playPauseBtn.textContent = '▶';
+        isPlaying = false;
+      }
+
+      // Book functionality (existing code)
+      const pages = [
+        // Inside Cover
+        {
+          type: "custom",
+          html: `<div class="cover-content" style="background: linear-gradient(135deg, #f8f9fa, #e9ecef);">
+                  <h2 style="font-family: var(--header-font); color: var(--accent-color); margin-bottom: 20px;">A Journey of Excellence</h2>
+                  <p style="font-size: 1.2em; line-height: 1.6; max-width: 80%;">This book commemorates the academic achievements and graduation journey of Sonwabise Mtirara, who graduated with distinction from the Durban University of Technology.</p>
+                </div>`,
+        },
+        // Table of Contents
+        {
+          type: "custom",
+          html: `<div class="toc-content">
+                  <h3 style="font-size: 2em; text-align:center; color: var(--accent-color); margin-bottom: 30px;">Table of Contents</h3>
+                  <ul class="toc-list">
+                    <li>Featured Article</li>
+                    <li>Graduation Memories (Photos)</li>
+                    <li>Reflections</li>
+                    <li>Final Thoughts</li>
+                  </ul>
+                </div>`,
+        },
+        // Featured Image - 0.jpeg
+        {
+          type: "image",
+          src: "./images/0.jpeg",
+          caption: "The journey of a thousand miles begins with a single step.",
+        },
+        // Featured Article Start
+        {
+          type: "custom",
+          html: `<div class="article-content">
+                  <img src="./images/0.jpeg" alt="Sonwabise Mtirara" class="article-image">
+                  <h3>DUT Graduate Shines with Cum Laude Achievement</h3>
+                  <p>From day one of his studies, <strong>Sonwabise Mtirara</strong> committed himself to performing at his absolute best. His commitment has paid off for him as he was recognised as one of the top achievers in his class. He graduated Cum Laude for his Diploma in Information and Communications Technology (ICT) in Business Analysis at the Durban University of Technology (DUT) 2025 Autumn Graduation Ceremony at the Olive Convention Centre on Monday, 26 May 2025.</p>
+                  <p><strong>Mtirara (24) from Centane in the Eastern Cape</strong> was among the top performing students of the Faculty of Accounting and Informatics who were honoured for their academic excellence.</p>
+                  <p>For Mtirara obtaining his first qualification has brought him profound satisfaction, especially knowing he has successfully completed what he set out to achieve, and did so 'in style'.</p>
+                </div>`,
+        },
+        // Article Continuation
+        {
+          type: "custom",
+          html: `<div class="article-content">
+                  <h3>Continued Success and Future Plans</h3>
+                  <p>"I look towards the future with strong self-belief and faith, confident in my abilities, skills, and personal attributes. Moving forward, my focus is firmly on continuous learning and upskilling to prepare myself for the workplace and personal development. I plan to actively learn from experienced individuals in my desired field and leverage the insights from communities I've joined that align with my future goals, absorbing as much knowledge as I can to build my career," shared Mtirara.</p>
+                  <p>Speaking about his DUT journey, Mtirara said it began in 2022 when he was given an offer to study towards his first qualification. He indicated that from day one, he committed himself to perform to the best of his ability, which facilitated a smooth adaptation to his course demands.</p>
+                  <p>"Early in my first semester, a group assignment led to the formation of invaluable friendships. We discovered a shared ambition to succeed, fostering an environment of mutual motivation, healthy competition, and constant support. This camaraderie was a cornerstone of my DUT experience; knowing I had peers who shared my goals and determination made the journey through second and third year significantly less daunting and ultimately more rewarding because I wasn't alone," reiterated Mtirara.</p>
+                </div>`,
+        },
+        // Values and Challenges
+        {
+          type: "custom",
+          html: `<div class="article-content">
+                  <h3>Values and Overcoming Challenges</h3>
+                  <p>Throughout his time at DUT, Mtirara said several core values and principles from the ENVISION2030 Living Values Framework became central to his approach. He strongly associated with honesty, as he believed it required him to constantly self-assess his efforts and performance truthfully. He said accountability was also vital, not only in fulfilling his responsibilities within group projects across all semesters but also in holding himself accountable for achieving the personal goals he set for his studies.</p>
+                  <p>In terms of principles, he shared professionalism was paramount in his interactions, from meeting deadlines and using formal communication like proper email etiquette, to respecting peers and lecturers. He indicated that his journey itself speaks to commitment, as seeing his diploma through to completion required sustained dedication. Lastly, Mtirara believes the pursuit of excellence drove him to consistently strive to do his best, an effort reflected in achieving his qualification with Cum Laude.</p>
+                  <p>His academic journey was not without its obstacles. A major challenge he faced was securing funding. He shared that he studied for his first two years without funding, which meant he could not see his final examination marks and was able to see only his coursework results.</p>
+                </div>`,
+        },
+        // Looking Forward
+        {
+          type: "custom",
+          html: `<div class="article-content">
+                  <h3>Looking Forward</h3>
+                  <p>"While stressful, this situation motivated me to be absolutely certain about my understanding and performance in assessments. Another challenge was mastering time management; I often created study schedules but struggled to adhere to them, as I was more accustomed to improvising. Linked to this was overcoming procrastination, the tendency to delay tasks for less productive activities. Finally, especially during my first year, I had to build the confidence to ask questions when I was unsure about coursework, rather than skipping over difficult topics," added Mtirara.</p>
+                  <p>He is currently enrolled and studying for the Advanced Diploma in Information and Communications Technology at DUT. His primary focus is on gaining valuable industry experience within the ICT sector.</p>
+                  <p style="text-align: center; margin-top: 30px;">
+                    <a href="https://www.dut.ac.za/mtirara-passes-diploma-in-ict-business-analysis-with-flying-colours/" target="_blank" style="color: var(--accent-color); font-weight: bold; text-decoration: none; border: 2px solid var(--accent-color); padding: 10px 20px; border-radius: 30px; display: inline-block; transition: all 0.3s ease;">
+                      🔗 Read Full Article
+                    </a>
+                  </p>
+                  <p style="text-align: center; font-style: italic; margin-top: 20px; color: var(--primary-color);">
+                    Pictured: Sonwabise Mtirara.<br>
+                    Photographer: S'bonelo Dlamini
+                  </p>
+                </div>`,
+        },
+
+        // All the images from your folder with updated captions
+        {
+          type: "image",
+          src: "./images/1.jpg",
+          caption:
+            "For I know the plans I have for you, declares the LORD, plans to prosper you and not to harm you, plans to give you hope and a future. - Jeremiah 29:11",
+        },
+        {
+          type: "image",
+          src: "./images/2.jpg",
+          caption:
+            "Commit to the LORD whatever you do, and he will establish your plans. - Proverbs 16:3",
+        },
+        {
+          type: "image",
+          src: "./images/3.jpg",
+          caption: "A moment of pure joy and accomplishment.",
+        },
+        {
+          type: "image",
+          src: "./images/4.jpg",
+          caption: "With family, who made this all possible.",
+        },
+        {
+          type: "image",
+          src: "./images/5.jpg",
+          caption:
+            "Trust in the Lord with all your heart and lean not on your own understanding; in all your ways submit to him, and he will make your paths straight. - Proverbs 3:5-6",
+        },
+        {
+          type: "image",
+          src: "./images/6.jpg",
+          caption: "The tassel was worth the hassle!",
+        },
+        {
+          type: "image",
+          src: "./images/7.jpg",
+          caption:
+            "Be strong and courageous. Do not be afraid; do not be discouraged, for the LORD your God will be with you wherever you go. - Joshua 1:9",
+        },
+        {
+          type: "image",
+          src: "./images/8.jpg",
+          caption:
+            "A dream becomes a goal when action is taken toward its achievement.",
+        },
+        {
+          type: "image",
+          src: "./images/9.jpg",
+          caption: "Dream big, work hard, stay focused.",
+        },
+        {
+          type: "image",
+          src: "./images/10.jpg",
+          caption:
+            "I can do all things through Christ who strengthens me. - Philippians 4:13",
+        },
+        {
+          type: "image",
+          src: "./images/11.jpg",
+          caption:
+            "And we know that in all things God works for the good of those who love him, who have been called according to his purpose. - Romans 8:28",
+        },
+        {
+          type: "image",
+          src: "./images/12.jpg",
+          caption:
+            "The future belongs to those who believe in the beauty of their dreams.",
+        },
+        {
+          type: "image",
+          src: "./images/13.jpg",
+          caption:
+            "Let your light shine before others, that they may see your good deeds and glorify your Father in heaven. - Matthew 5:16",
+        },
+        {
+          type: "image",
+          src: "./images/14.jpg",
+          caption: "The only way to do great work is to love what you do.",
+        },
+        {
+          type: "image",
+          src: "./images/15.jpg",
+          caption: "Believe you can and you're halfway there.",
+        },
+        {
+          type: "image",
+          src: "./images/16.jpg",
+          caption:
+            "So do not fear, for I am with you; do not be dismayed, for I am your God. I will strengthen you and help you. - Isaiah 41:10",
+        },
+        {
+          type: "image",
+          src: "./images/17.jpg",
+          caption: "Start where you are. Use what you have. Do what you can.",
+        },
+        {
+          type: "image",
+          src: "./images/18.jpg",
+          caption:
+            "The secret of getting ahead is getting started. - Mark Twain",
+        },
+        {
+          type: "image",
+          src: "./images/19.jpg",
+          caption:
+            "Let us not become weary in doing good, for at the proper time we will reap a harvest if we do not give up. - Galatians 6:9",
+        },
+        {
+          type: "image",
+          src: "./images/20.jpg",
+          caption:
+            "You are never too old to set another goal or to dream a new dream.",
+        },
+        {
+          type: "image",
+          src: "./images/21.jpg",
+          caption:
+            "The harder you work for something, the greater you'll feel when you achieve it.",
+        },
+        {
+          type: "image",
+          src: "./images/22.jpg",
+          caption:
+            "He has made everything beautiful in its time. - Ecclesiastes 3:11",
+        },
+        {
+          type: "image",
+          src: "./images/23.jpg",
+          caption: "The expert in anything was once a beginner.",
+        },
+        {
+          type: "image",
+          src: "./images/24.jpg",
+          caption:
+            "Your education is a dress rehearsal for a life that is yours to lead.",
+        },
+        {
+          type: "image",
+          src: "./images/26.jpg",
+          caption:
+            "The beautiful thing about learning is that no one can take it away from you.",
+        },
+        {
+          type: "image",
+          src: "./images/27.jpg",
+          caption:
+            "Education is the passport to the future, for tomorrow belongs to those who prepare for it today.",
+        },
+        {
+          type: "image",
+          src: "./images/28.jpg",
+          caption: "The roots of education are bitter, but the fruit is sweet.",
+        },
+        {
+          type: "image",
+          src: "./images/29.jpg",
+          caption:
+            "Education is the most powerful weapon which you can use to change the world. - Nelson Mandela",
+        },
+        {
+          type: "image",
+          src: "./images/30.jpg",
+          caption:
+            "For the Spirit God gave us does not make us timid, but gives us power, love and self-discipline. - 2 Timothy 1:7",
+        },
+        {
+          type: "image",
+          src: "./images/31.jpg",
+          caption:
+            "The future belongs to those who believe in the beauty of their dreams. - Eleanor Roosevelt",
+        },
+        {
+          type: "image",
+          src: "./images/32.jpg",
+          caption: "Create a life you love.",
+        },
+        {
+          type: "image",
+          src: "./images/33.jpg",
+          caption:
+            "The only way to do great work is to love what you do. - Steve Jobs",
+        },
+        {
+          type: "image",
+          src: "./images/34.jpg",
+          caption:
+            "Take delight in the LORD, and he will give you the desires of your heart. - Psalm 37:4",
+        },
+        {
+          type: "image",
+          src: "./images/35.jpg",
+          caption:
+            "Your time is limited, don't waste it living someone else's life. - Steve Jobs",
+        },
+        {
+          type: "image",
+          src: "./images/36.jpg",
+          caption:
+            "Believe you can and you're halfway there. - Theodore Roosevelt",
+        },
+        {
+          type: "image",
+          src: "./images/37.jpg",
+          caption:
+            "It always seems impossible until it's done. - Nelson Mandela",
+        },
+        {
+          type: "image",
+          src: "./images/38.jpg",
+          caption:
+            "The Lord is my strength and my shield; in him my heart trusts. - Psalm 28:7",
+        },
+        {
+          type: "image",
+          src: "./images/39.jpg",
+          caption:
+            "The secret of getting ahead is getting started. - Mark Twain",
+        },
+        {
+          type: "image",
+          src: "./images/40.jpg",
+          caption:
+            "Don't watch the clock; do what it does. Keep going. - Sam Levenson",
+        },
+        {
+          type: "image",
+          src: "./images/41.jpg",
+          caption:
+            "You are never too old to set another goal or to dream a new dream. - C.S. Lewis",
+        },
+        {
+          type: "image",
+          src: "./images/42.jpg",
+          caption:
+            "Give thanks to the Lord, for he is good; his love endures forever. - Psalm 107:1",
+        },
+        {
+          type: "image",
+          src: "./images/11.jpg",
+          caption:
+            "Success doesn't come from what you do occasionally, but what you do consistently.",
+        },
+        {
+          type: "image",
+          src: "./images/44.jpg",
+          caption: "The expert in anything was once a beginner.",
+        },
+        {
+          type: "image",
+          src: "./images/45.jpg",
+          caption:
+            "Your education is a dress rehearsal for a life that is yours to lead. - Nora Ephron",
+        },
+        {
+          type: "image",
+          src: "./images/46.jpg",
+          caption:
+            "Every good and perfect gift is from above. - James 1:17",
+        },
+        {
+          type: "image",
+          src: "./images/47.jpg",
+          caption:
+            "Education is the passport to the future, for tomorrow belongs to those who prepare for it today. - Malcolm X",
+        },
+        {
+          type: "image",
+          src: "./images/54.jpg",
+          caption:
+            "The roots of education are bitter, but the fruit is sweet. - Aristotle",
+        },
+        {
+          type: "image",
+          src: "./images/49.jpg",
+          caption: "Every moment is a fresh beginning.",
+        },
+        {
+          type: "image",
+          src: "./images/51.jpg",
+          caption:
+            "Learning is a treasure that will follow its owner everywhere. - Chinese Proverb",
+        },
+        {
+          type: "image",
+          src: "./images/55.jpg",
+          caption:
+            "The capacity to learn is a gift; the ability to learn is a skill; the willingness to learn is a choice. - Brian Herbert",
+        },
+        {
+          type: "image",
+          src: "./images/56.jpg",
+          caption:
+            "Education is not preparation for life; education is life itself. - John Dewey",
+        },
+
+        // New Custom Pages with Verses and Quotes (replaces videos)
+        {
+          type: "custom",
+          html: `<div class="page-content" style="padding: 50px; text-align: center; justify-content: center;">
+                  <h3 style="font-family: var(--header-font); color: var(--accent-color); margin-bottom: 30px; font-size: 2em;">On Faith and Answered Prayers</h3>
+                  <p style="font-size: 1.3em; line-height: 1.8; font-style: italic;">"Therefore I tell you, whatever you ask for in prayer, believe that you have received it, and it will be yours."</p>
+                  <p style="font-weight: bold; margin-top: 20px; font-size: 1.1em;">- Mark 11:24</p>
+                </div>`,
+        },
+        {
+          type: "custom",
+          html: `<div class="page-content" style="padding: 50px; text-align: center; justify-content: center;">
+                  <h3 style="font-family: var(--header-font); color: var(--accent-color); margin-bottom: 30px; font-size: 2em;">On Waiting for the Lord</h3>
+                  <p style="font-size: 1.3em; line-height: 1.8; font-style: italic;">"But those who hope in the LORD will renew their strength. They will soar on wings like eagles; they will run and not grow weary, they will walk and not be faint."</p>
+                  <p style="font-weight: bold; margin-top: 20px; font-size: 1.1em;">- Isaiah 40:31</p>
+                </div>`,
+        },
+        {
+          type: "custom",
+          html: `<div class="page-content" style="padding: 50px; text-align: center; justify-content: center;">
+                  <h3 style="font-family: var(--header-font); color: var(--accent-color); margin-bottom: 30px; font-size: 2em;">On Winning the Race</h3>
+                  <p style="font-size: 1.3em; line-height: 1.8; font-style: italic;">"I have fought the good fight, I have finished the race, I have kept the faith. Now there is in store for me the crown of righteousness."</p>
+                  <p style="font-weight: bold; margin-top: 20px; font-size: 1.1em;">- 2 Timothy 4:7-8</p>
+                </div>`,
+        },
+        {
+          type: "custom",
+          html: `<div class="page-content" style="padding: 50px; text-align: center; justify-content: center;">
+                  <h3 style="font-family: var(--header-font); color: var(--accent-color); margin-bottom: 30px; font-size: 2em;">A Final Word</h3>
+                  <p style="font-size: 1.3em; line-height: 1.8; font-style: italic;">"The future is a canvas, and your education is the brush. Paint a masterpiece."</p>
+                  <p style="font-weight: bold; margin-top: 20px; font-size: 1.1em;">- Anonymous</p>
+                </div>`,
+        },
+
+        // Final Pages
+        {
+          type: "custom",
+          html: `<div class="toc-content" style="text-align: center;">
+                  <h3 style="font-size: 2.5em; color: var(--accent-color); margin-bottom: 30px;">Final Thoughts</h3>
+                  <p style="font-size: 1.2em; line-height: 1.8; margin-top: 20px; text-align: justify;">
+                    This journey was made possible by the unwavering support of my family, friends, mentors, and educators. 
+                    To my parents, thank you for your sacrifices and for always believing in me. To my lecturers and the DUT community, 
+                    thank you for providing an environment that fostered growth and excellence.
+                  </p>
+                  <p style="font-size: 1.2em; line-height: 1.8; margin-top: 20px; text-align: justify;">
+                    This graduation is not just an end, but a beginning—a stepping stone to greater achievements. 
+                    It represents the culmination of years of hard work, dedication, and perseverance. 
+                    As I move forward, I carry with me the knowledge, skills, and values instilled during my time at DUT.
+                  </p>
+                  <p style="font-weight: bold; color: var(--accent-color); font-size: 1.4em; margin-top: 40px;">
+                    Here's to new beginnings and endless possibilities!
+                  </p>
+                  <p style="margin-top: 30px; font-style: italic; color: var(--primary-color);">
+                    - Sonwabise Mtirara
+                  </p>
+                </div>`,
+        },
+        // Back Cover
+        {
+          type: "custom",
+          html: `<div class="cover-content" style="background: linear-gradient(135deg, #e9ecef, #dee2e6);">
+                  <h2 style="font-family: var(--header-font); color: var(--accent-color); margin-bottom: 20px;">The End of One Chapter, The Beginning of Another</h2>
+                  <img src="./images/DUTLOGO.jpeg" alt="DUT Logo" style="width: 120px; margin: 20px 0;">
+                  <p style="font-size: 1.1em; max-width: 80%;">Durban University of Technology<br>P.O. Box 1334, Durban, 4000, South Africa</p>
+                </div>`,
+        },
+      ];
+
+      const book = document.getElementById("book");
+      const bookCover = document.getElementById("bookCover");
+      const openBookBtn = document.getElementById("openBookBtn");
+      const prevBtn = document.getElementById("prevBtn");
+      const nextBtn = document.getElementById("nextBtn");
+      const pageCounter = document.getElementById("pageCounter");
+      const controls = document.getElementById("controls");
+
+      let currentSpread = 0;
+      let spreads = [];
+      let totalSpreads = 0;
+      let bookIsOpen = false;
+      let isFlipping = false;
+
+      function generatePageHTML(pageData) {
+        if (!pageData) {
+          return `<div style="display: flex; align-items: center; justify-content: center; height: 100%; color: #ccc;">
+                    <p>Blank Page</p>
+                  </div>`;
+        }
+
+        switch (pageData.type) {
+          case "image":
+            return `<div class="page-content">
+                      <div class="media-container">
+                        <img src="${pageData.src}" alt="Graduation Memory" class="memory-image" loading="lazy">
+                      </div>
+                      <div class="caption-container">${pageData.caption}</div>
+                    </div>`;
+          case "video":
+            return `<div class="page-content">
+                      <div class="media-container">
+                        <video class="memory-video" controls preload="metadata">
+                          <source src="${pageData.src}" type="video/mp4">
+                          Your browser does not support the video tag.
+                        </video>
+                      </div>
+                      <div class="caption-container">${pageData.caption}</div>
+                    </div>`;
+          case "custom":
+            return pageData.html;
+          default:
+            return `<div style="display: flex; align-items: center; justify-content: center; height: 100%; color: #ccc;">
+                      <p>Page Content</p>
+                    </div>`;
+        }
+      }
+
+      function createSpreads() {
+        // Clear existing spreads
+        book.innerHTML = "";
+        book.appendChild(bookCover);
+
+        spreads = [];
+        totalSpreads = Math.ceil(pages.length / 2);
+
+        // Create all spreads
+        for (let i = 0; i < totalSpreads; i++) {
+          const spread = document.createElement("div");
+          spread.className = "page-spread";
+          spread.setAttribute("data-spread", i);
+
+          const leftPage = document.createElement("div");
+          leftPage.className = "left-page";
+          leftPage.innerHTML = generatePageHTML(pages[i * 2]);
+
+          const rightPage = document.createElement("div");
+          rightPage.className = "right-page";
+          rightPage.innerHTML = generatePageHTML(pages[i * 2 + 1]);
+
+          spread.appendChild(leftPage);
+          spread.appendChild(rightPage);
+          book.appendChild(spread);
+          spreads.push(spread);
+        }
+
+        updateControls();
+        updatePageCounter();
+      }
+
+      function openBook() {
+        bookIsOpen = true;
+        openBookBtn.classList.add("hidden");
+        book.classList.add("opened");
+        bookCover.classList.add("opened");
+        
+        // Show music player
+        musicPlayer.classList.add("visible");
+        
+        // The first page is now made active here.
+        if (spreads.length > 0) {
+            spreads[0].classList.add("active");
+        }
+
+        // Show controls after book opens
+        setTimeout(() => {
+          controls.classList.add("visible");
+          pageCounter.classList.add("visible");
+        }, 800);
+      }
+
+      function goNextPage() {
+        if (isFlipping || currentSpread >= spreads.length - 1) return;
+
+        isFlipping = true;
+        const current = spreads[currentSpread];
+        current.classList.add("flipping");
+
+        setTimeout(() => {
+          current.classList.remove("active");
+          current.classList.remove("flipping");
+          currentSpread++;
+          spreads[currentSpread].classList.add("active");
+          isFlipping = false;
+          updateControls();
+          updatePageCounter();
+        }, 800);
+      }
+
+      function goPrevPage() {
+        if (isFlipping || currentSpread <= 0) return;
+
+        isFlipping = true;
+        const current = spreads[currentSpread];
+        current.classList.add("flipping");
+
+        setTimeout(() => {
+          current.classList.remove("active");
+          current.classList.remove("flipping");
+          currentSpread--;
+          spreads[currentSpread].classList.add("active");
+          isFlipping = false;
+          updateControls();
+          updatePageCounter();
+        }, 800);
+      }
+
+      function updateControls() {
+        prevBtn.disabled = currentSpread === 0;
+        nextBtn.disabled = currentSpread === spreads.length - 1;
+      }
+
+      function updatePageCounter() {
+        pageCounter.textContent = `Page ${currentSpread + 1} of ${
+          spreads.length
+        }`;
+      }
+
+      // Initialize both music player and book
+      initMusicPlayer();
+      createSpreads();
+
+      // Add keyboard navigation
+      document.addEventListener("keydown", (e) => {
+        if (!bookIsOpen) return;
+
+        if (e.key === "ArrowRight" || e.key === " ") {
+          goNextPage();
+        } else if (e.key === "ArrowLeft") {
+          goPrevPage();
+        }
+      });
+    </script>
+  </body>
 </html>
