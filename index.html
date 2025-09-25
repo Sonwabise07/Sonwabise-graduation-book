@@ -31,16 +31,31 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        padding: 20px;
+        padding: 10px;
         color: var(--text-color);
-        overflow: hidden;
+        overflow-x: hidden;
       }
 
       .book-container {
-        width: 1100px;
-        height: 700px;
+        width: 100%;
+        max-width: 1100px;
+        height: 80vh;
+        min-height: 500px;
         position: relative;
         perspective: 2000px;
+      }
+
+      /* Mobile Styles */
+      @media (max-width: 768px) {
+        body {
+          padding: 5px;
+        }
+        
+        .book-container {
+          height: 85vh;
+          min-height: 400px;
+          max-width: 100%;
+        }
       }
 
       .book {
@@ -50,6 +65,12 @@
         transform-style: preserve-3d;
         transition: transform 1s ease-in-out;
         transform: rotateY(-15deg);
+      }
+
+      @media (max-width: 768px) {
+        .book {
+          transform: rotateY(-5deg);
+        }
       }
 
       .book.opened {
@@ -68,7 +89,14 @@
         transition: transform 1.2s cubic-bezier(0.4, 0, 0.2, 1);
         z-index: 1000;
         backface-visibility: hidden;
-        padding: 20px;
+        padding: 10px;
+      }
+
+      @media (max-width: 768px) {
+        .book-cover {
+          border-radius: 0 10px 10px 0;
+          padding: 5px;
+        }
       }
 
       .book-cover.opened {
@@ -83,6 +111,12 @@
         opacity: 0;
         visibility: hidden;
         transform-style: preserve-3d;
+      }
+
+      @media (max-width: 768px) {
+        .page-spread {
+          flex-direction: column;
+        }
       }
 
       .page-spread.active {
@@ -109,7 +143,7 @@
         width: 50%;
         height: 100%;
         background-color: var(--page-color);
-        padding: 40px;
+        padding: 20px;
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -121,6 +155,31 @@
         transform-style: preserve-3d;
         backface-visibility: hidden;
         transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      @media (max-width: 768px) {
+        .left-page,
+        .right-page {
+          width: 100%;
+          height: 50%;
+          padding: 15px;
+          border-radius: 10px 10px 0 0;
+          box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .left-page {
+          border-right: none;
+          border-bottom: 1px solid #ddd;
+          border-radius: 10px 10px 0 0;
+          box-shadow: inset 0 -5px 10px rgba(0, 0, 0, 0.1);
+          transform-origin: bottom center;
+        }
+        
+        .right-page {
+          border-radius: 0 0 10px 10px;
+          box-shadow: inset 0 5px 10px rgba(0, 0, 0, 0.1);
+          transform-origin: top center;
+        }
       }
 
       .left-page {
@@ -152,41 +211,77 @@
       }
 
       .cover-logo {
-        width: 150px;
+        width: 100px;
         height: auto;
-        margin-bottom: 20px;
+        margin-bottom: 15px;
+      }
+
+      @media (max-width: 768px) {
+        .cover-logo {
+          width: 80px;
+          margin-bottom: 10px;
+        }
       }
 
       .cover-main-title {
         font-family: var(--header-font);
-        font-size: 3.5em;
+        font-size: 2.5em;
         color: #2c2c2c;
-        margin-bottom: 10px;
+        margin-bottom: 8px;
         text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      @media (max-width: 768px) {
+        .cover-main-title {
+          font-size: 1.8em;
+          margin-bottom: 5px;
+        }
       }
 
       .cover-grad-name {
         font-family: var(--header-font);
-        font-size: 2.2em;
+        font-size: 1.8em;
         color: var(--accent-color);
-        margin-bottom: 20px;
+        margin-bottom: 15px;
+      }
+
+      @media (max-width: 768px) {
+        .cover-grad-name {
+          font-size: 1.3em;
+          margin-bottom: 10px;
+        }
       }
 
       .cover-details {
-        font-size: 1.1em;
+        font-size: 1em;
         color: var(--primary-color);
-        margin-top: 10px;
+        margin-top: 8px;
+      }
+
+      @media (max-width: 768px) {
+        .cover-details {
+          font-size: 0.9em;
+          margin-top: 5px;
+        }
       }
 
       .cum-laude-badge {
         background-color: var(--gold-color);
         color: white;
-        padding: 8px 15px;
-        border-radius: 20px;
+        padding: 6px 12px;
+        border-radius: 15px;
         font-weight: bold;
-        margin-top: 15px;
-        font-size: 1.2em;
+        margin-top: 10px;
+        font-size: 1em;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      }
+
+      @media (max-width: 768px) {
+        .cum-laude-badge {
+          padding: 5px 10px;
+          font-size: 0.9em;
+          margin-top: 8px;
+        }
       }
 
       .page-content {
@@ -196,7 +291,7 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        gap: 20px;
+        gap: 15px;
       }
 
       .media-container {
@@ -218,6 +313,14 @@
         transition: transform 0.3s ease;
       }
 
+      @media (max-width: 768px) {
+        .memory-image,
+        .memory-video {
+          max-width: 95%;
+          max-height: 85%;
+        }
+      }
+
       .memory-image:hover,
       .memory-video:hover {
         transform: scale(1.02);
@@ -225,15 +328,24 @@
 
       .caption-container {
         width: 90%;
-        padding: 15px;
-        font-size: 1.1em;
+        padding: 10px;
+        font-size: 1em;
         font-style: italic;
         color: var(--primary-color);
         border-top: 2px solid var(--accent-color);
         text-align: center;
-        line-height: 1.6;
+        line-height: 1.5;
         background-color: rgba(248, 249, 250, 0.7);
         border-radius: 5px;
+      }
+
+      @media (max-width: 768px) {
+        .caption-container {
+          width: 95%;
+          padding: 8px;
+          font-size: 0.9em;
+          line-height: 1.4;
+        }
       }
 
       .article-content,
@@ -242,51 +354,91 @@
         width: 100%;
         height: 100%;
         overflow-y: auto;
-        padding: 20px;
-        line-height: 1.8;
-        font-size: 0.95em;
+        padding: 15px;
+        line-height: 1.6;
+        font-size: 0.9em;
+      }
+
+      @media (max-width: 768px) {
+        .article-content,
+        .toc-content {
+          padding: 10px;
+          font-size: 0.8em;
+          line-height: 1.5;
+        }
       }
 
       .article-content h3 {
         font-family: var(--header-font);
         color: var(--accent-color);
-        margin-bottom: 15px;
-        font-size: 1.8em;
+        margin-bottom: 12px;
+        font-size: 1.5em;
         border-bottom: 2px solid var(--accent-color);
-        padding-bottom: 10px;
+        padding-bottom: 8px;
+      }
+
+      @media (max-width: 768px) {
+        .article-content h3 {
+          font-size: 1.2em;
+          margin-bottom: 8px;
+          padding-bottom: 5px;
+        }
       }
 
       .article-content p {
-        margin-bottom: 15px;
+        margin-bottom: 12px;
         text-align: justify;
+      }
+
+      @media (max-width: 768px) {
+        .article-content p {
+          margin-bottom: 10px;
+        }
       }
 
       .article-image {
         float: right;
-        margin: 0 0 15px 15px;
-        width: 200px;
+        margin: 0 0 10px 10px;
+        width: 150px;
         border-radius: 8px;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
       }
 
+      @media (max-width: 768px) {
+        .article-image {
+          float: none;
+          display: block;
+          margin: 10px auto;
+          width: 120px;
+        }
+      }
+
       .toc-list {
         list-style-position: inside;
-        padding-left: 10px;
-        margin-top: 30px;
+        padding-left: 8px;
+        margin-top: 20px;
       }
 
       .toc-list li {
-        margin-bottom: 15px;
-        font-size: 1.2em;
-        padding: 10px;
+        margin-bottom: 12px;
+        font-size: 1.1em;
+        padding: 8px;
         border-left: 3px solid var(--accent-color);
         transition: all 0.3s ease;
         cursor: pointer;
       }
 
+      @media (max-width: 768px) {
+        .toc-list li {
+          font-size: 1em;
+          padding: 6px;
+          margin-bottom: 10px;
+        }
+      }
+
       .toc-list li:hover {
         background-color: rgba(82, 121, 111, 0.1);
-        transform: translateX(5px);
+        transform: translateX(3px);
       }
 
       .open-book-btn {
@@ -294,12 +446,12 @@
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        padding: 20px 40px;
+        padding: 15px 30px;
         background: var(--accent-color);
         color: white;
         border: none;
-        border-radius: 30px;
-        font-size: 18px;
+        border-radius: 25px;
+        font-size: 16px;
         font-weight: bold;
         cursor: pointer;
         transition: all 0.3s ease;
@@ -307,6 +459,14 @@
         text-transform: uppercase;
         letter-spacing: 1px;
         box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+      }
+
+      @media (max-width: 768px) {
+        .open-book-btn {
+          padding: 12px 25px;
+          font-size: 14px;
+          border-radius: 20px;
+        }
       }
 
       .open-book-btn:hover {
@@ -321,15 +481,24 @@
 
       .controls {
         position: fixed;
-        bottom: 30px;
+        bottom: 20px;
         left: 50%;
         transform: translateX(-50%);
         display: flex;
-        gap: 20px;
+        gap: 15px;
         z-index: 1000;
         opacity: 0;
         visibility: hidden;
         transition: all 0.3s ease;
+      }
+
+      @media (max-width: 768px) {
+        .controls {
+          bottom: 15px;
+          gap: 10px;
+          flex-wrap: wrap;
+          justify-content: center;
+        }
       }
 
       .controls.visible {
@@ -338,10 +507,10 @@
       }
 
       .nav-btn {
-        padding: 15px 35px;
+        padding: 12px 25px;
         border: 2px solid var(--accent-color);
-        border-radius: 30px;
-        font-size: 16px;
+        border-radius: 25px;
+        font-size: 14px;
         font-weight: bold;
         cursor: pointer;
         transition: all 0.3s ease;
@@ -352,10 +521,18 @@
         box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
       }
 
+      @media (max-width: 768px) {
+        .nav-btn {
+          padding: 10px 20px;
+          font-size: 12px;
+          border-radius: 20px;
+        }
+      }
+
       .nav-btn:hover {
         background-color: #3f5f58;
         border-color: #3f5f58;
-        transform: translateY(-3px);
+        transform: translateY(-2px);
         box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
       }
 
@@ -369,19 +546,28 @@
 
       .page-counter {
         position: fixed;
-        bottom: 100px;
+        bottom: 80px;
         left: 50%;
         transform: translateX(-50%);
         background: rgba(255, 255, 255, 0.9);
-        padding: 10px 20px;
-        border-radius: 20px;
+        padding: 8px 15px;
+        border-radius: 15px;
         font-weight: bold;
+        font-size: 14px;
         box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         backdrop-filter: blur(5px);
         border: 1px solid rgba(0, 0, 0, 0.1);
         opacity: 0;
         visibility: hidden;
         transition: all 0.3s ease;
+      }
+
+      @media (max-width: 768px) {
+        .page-counter {
+          bottom: 70px;
+          padding: 6px 12px;
+          font-size: 12px;
+        }
       }
 
       .page-counter.visible {
@@ -391,37 +577,50 @@
 
       .book-shadow {
         position: absolute;
-        bottom: -20px;
+        bottom: -15px;
         left: 50%;
         transform: translateX(-50%);
-        width: 90%;
-        height: 20px;
+        width: 80%;
+        height: 15px;
         background: rgba(0, 0, 0, 0.2);
         border-radius: 50%;
-        filter: blur(10px);
+        filter: blur(8px);
         z-index: -1;
       }
 
       /* Music Player Styles */
       .music-player {
         position: fixed;
-        top: 20px;
-        right: 20px;
+        top: 10px;
+        right: 10px;
         background: rgba(255, 255, 255, 0.95);
         backdrop-filter: blur(10px);
-        border-radius: 20px;
-        padding: 10px 15px;
+        border-radius: 15px;
+        padding: 8px 12px;
         box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
         border: 1px solid rgba(255, 255, 255, 0.3);
         z-index: 2000;
         display: flex;
         align-items: center;
-        gap: 8px;
-        min-width: 250px;
+        gap: 6px;
+        min-width: 200px;
         opacity: 0;
         visibility: hidden;
         transition: all 0.3s ease;
-        font-size: 12px;
+        font-size: 11px;
+      }
+
+      @media (max-width: 768px) {
+        .music-player {
+          top: 5px;
+          right: 5px;
+          left: 5px;
+          min-width: auto;
+          max-width: calc(100% - 10px);
+          padding: 6px 10px;
+          font-size: 10px;
+          border-radius: 12px;
+        }
       }
 
       .music-player.visible {
@@ -432,12 +631,12 @@
       .music-controls {
         display: flex;
         align-items: center;
-        gap: 6px;
+        gap: 4px;
       }
 
       .music-btn {
-        width: 28px;
-        height: 28px;
+        width: 24px;
+        height: 24px;
         border-radius: 50%;
         border: none;
         background: var(--accent-color);
@@ -446,8 +645,16 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: 10px;
+        font-size: 9px;
         transition: all 0.2s ease;
+      }
+
+      @media (max-width: 768px) {
+        .music-btn {
+          width: 22px;
+          height: 22px;
+          font-size: 8px;
+        }
       }
 
       .music-btn:hover {
@@ -464,22 +671,41 @@
       .song-info {
         flex: 1;
         text-align: center;
-        margin: 0 8px;
+        margin: 0 6px;
+      }
+
+      @media (max-width: 768px) {
+        .song-info {
+          margin: 0 4px;
+        }
       }
 
       .song-title {
         font-weight: bold;
         color: var(--accent-color);
-        font-size: 11px;
+        font-size: 10px;
         margin-bottom: 2px;
+      }
+
+      @media (max-width: 768px) {
+        .song-title {
+          font-size: 9px;
+        }
       }
 
       .song-progress {
         display: flex;
         align-items: center;
-        gap: 4px;
-        font-size: 9px;
+        gap: 3px;
+        font-size: 8px;
         color: #666;
+      }
+
+      @media (max-width: 768px) {
+        .song-progress {
+          font-size: 7px;
+          gap: 2px;
+        }
       }
 
       .progress-bar {
@@ -488,6 +714,7 @@
         background: #ddd;
         border-radius: 2px;
         overflow: hidden;
+        cursor: pointer;
       }
 
       .progress-fill {
@@ -501,11 +728,17 @@
       .volume-control {
         display: flex;
         align-items: center;
-        gap: 4px;
+        gap: 3px;
+      }
+
+      @media (max-width: 768px) {
+        .volume-control {
+          gap: 2px;
+        }
       }
 
       .volume-slider {
-        width: 40px;
+        width: 35px;
         height: 3px;
         background: #ddd;
         border-radius: 2px;
@@ -513,10 +746,16 @@
         -webkit-appearance: none;
       }
 
+      @media (max-width: 768px) {
+        .volume-slider {
+          width: 25px;
+        }
+      }
+
       .volume-slider::-webkit-slider-thumb {
         -webkit-appearance: none;
-        width: 12px;
-        height: 12px;
+        width: 10px;
+        height: 10px;
         background: var(--accent-color);
         border-radius: 50%;
         cursor: pointer;
@@ -526,6 +765,17 @@
       .book:not(.opened) .page-spread:first-of-type {
         opacity: 0 !important;
         visibility: hidden !important;
+      }
+
+      /* Mobile-specific page flipping animations */
+      @media (max-width: 768px) {
+        .page-spread.flipping .left-page {
+          transform: rotateX(-180deg);
+        }
+        
+        .page-spread.flipping .right-page {
+          transform: rotateX(180deg);
+        }
       }
     </style>
   </head>
@@ -548,7 +798,7 @@
         </div>
       </div>
       <div class="volume-control">
-        <span style="font-size: 10px;">🔊</span>
+        <span style="font-size: 9px;">🔊</span>
         <input type="range" class="volume-slider" id="volumeSlider" min="0" max="100" value="70" onchange="changeVolume()">
       </div>
     </div>
@@ -594,7 +844,7 @@
     <script>
       // Music Player Variables
       const songs = [
-        { title: "Congratulations", src: "./images/congragulations.mp3" },
+        { title: "Congratulations", src: "./images/congratulations.mp3" },
         { title: "Thank You", src: "./images/thank you.mp3" },
         { title: "Emtee", src: "./images/emtee.mp3" }
       ];
@@ -952,136 +1202,136 @@
         },
         {
           type: "image",
-          src: "./images/30.jpg",
+          src: "./images/IMG_9673.jpg",
           caption:
             "For the Spirit God gave us does not make us timid, but gives us power, love and self-discipline. - 2 Timothy 1:7",
         },
         {
           type: "image",
-          src: "./images/31.jpg",
+          src: "./images/IMG_9653.jpg",
           caption:
             "The future belongs to those who believe in the beauty of their dreams. - Eleanor Roosevelt",
         },
         {
           type: "image",
-          src: "./images/32.jpg",
+          src: "./images/IMG_9715.jpg",
           caption: "Create a life you love.",
         },
         {
           type: "image",
-          src: "./images/33.jpg",
+          src: "./images/IMG_9772.jpg",
           caption:
             "The only way to do great work is to love what you do. - Steve Jobs",
         },
         {
           type: "image",
-          src: "./images/34.jpg",
+          src: "./images/IMG_9748.jpg",
           caption:
             "Take delight in the LORD, and he will give you the desires of your heart. - Psalm 37:4",
         },
         {
           type: "image",
-          src: "./images/35.jpg",
+          src: "./images/IMG_9773.jpg",
           caption:
             "Your time is limited, don't waste it living someone else's life. - Steve Jobs",
         },
         {
           type: "image",
-          src: "./images/36.jpg",
+          src: "./images/IMG_9752.jpg",
           caption:
             "Believe you can and you're halfway there. - Theodore Roosevelt",
         },
         {
           type: "image",
-          src: "./images/37.jpg",
+          src: "./images/IMG_9753.jpg",
           caption:
             "It always seems impossible until it's done. - Nelson Mandela",
         },
         {
           type: "image",
-          src: "./images/38.jpg",
+          src: "./images/IMG_9698.jpg",
           caption:
             "The Lord is my strength and my shield; in him my heart trusts. - Psalm 28:7",
         },
         {
           type: "image",
-          src: "./images/39.jpg",
+          src: "./images/IMG_9817.jpg",
           caption:
             "The secret of getting ahead is getting started. - Mark Twain",
         },
         {
           type: "image",
-          src: "./images/40.jpg",
+          src: "./images/IMG_9818.jpg",
           caption:
             "Don't watch the clock; do what it does. Keep going. - Sam Levenson",
         },
         {
           type: "image",
-          src: "./images/41.jpg",
+          src: "./images/IMG_9821.jpg",
           caption:
             "You are never too old to set another goal or to dream a new dream. - C.S. Lewis",
         },
         {
           type: "image",
-          src: "./images/42.jpg",
+          src: "./images/IMG_9823.jpg",
           caption:
             "Give thanks to the Lord, for he is good; his love endures forever. - Psalm 107:1",
         },
         {
           type: "image",
-          src: "./images/11.jpg",
+          src: "./images/IMG_9832.jpg",
           caption:
             "Success doesn't come from what you do occasionally, but what you do consistently.",
         },
         {
           type: "image",
-          src: "./images/44.jpg",
+          src: "./images/IMG_9848.jpg",
           caption: "The expert in anything was once a beginner.",
         },
         {
           type: "image",
-          src: "./images/45.jpg",
+          src: "./images/IMG_9852.jpg",
           caption:
             "Your education is a dress rehearsal for a life that is yours to lead. - Nora Ephron",
         },
         {
           type: "image",
-          src: "./images/46.jpg",
+          src: "./images/IMG_9854.jpg",
           caption:
             "Every good and perfect gift is from above. - James 1:17",
         },
         {
           type: "image",
-          src: "./images/47.jpg",
+          src: "./images/IMG_9868.jpg",
           caption:
             "Education is the passport to the future, for tomorrow belongs to those who prepare for it today. - Malcolm X",
         },
         {
           type: "image",
-          src: "./images/54.jpg",
+          src: "./images/IMG_9889.jpg",
           caption:
             "The roots of education are bitter, but the fruit is sweet. - Aristotle",
         },
         {
           type: "image",
-          src: "./images/49.jpg",
+          src: "./images/IMG_9887.jpg",
           caption: "Every moment is a fresh beginning.",
         },
         {
           type: "image",
-          src: "./images/51.jpg",
+          src: "./images/IMG_9926.jpg",
           caption:
             "Learning is a treasure that will follow its owner everywhere. - Chinese Proverb",
         },
         {
           type: "image",
-          src: "./images/55.jpg",
+          src: "./images/IMG_9927.jpg",
           caption:
             "The capacity to learn is a gift; the ability to learn is a skill; the willingness to learn is a choice. - Brian Herbert",
         },
         {
           type: "image",
-          src: "./images/56.jpg",
+          src: "./images/IMG_9868.jpg",
           caption:
             "Education is not preparation for life; education is life itself. - John Dewey",
         },
